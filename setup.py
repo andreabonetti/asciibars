@@ -7,7 +7,7 @@ setup(
     py_modules = ["asciibars"],
     package_dir = {'':'src'},
     author = 'Andrea Bonetti',
-    author_email = '',
+    author_email = 'andrea.bonetti@alumni.epfl.ch',
     long_description = open('README.md').read() + '\n\n' + open('CHANGELOG.md').read(),
     long_description_content_type = "text/markdown",
     url='https://github.com/andreabonetti/asciibars',
