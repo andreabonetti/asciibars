@@ -4,6 +4,10 @@
 
 ## How to install it
 
+```
+pip install asciibars
+```
+
 ## How to use it
 
 Import the module:
