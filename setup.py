@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name = 'asciibars', 
-    version = '0.0.1',
+    version = '0.0.2',
     description = 'Bar charts in ASCII',
     py_modules = ["asciibars"],
     package_dir = {'':'src'},
