@@ -30,13 +30,14 @@ data_2 = [
 # plot
 # ======================================================
 
-asciibars.plot(data_1)
-print("")
-asciibars.plot(data_1,sep_lc=' -> ',unit='▓',max_length=40)
-print("")
-asciibars.plot(data_1,unit='▓',neg_unit='░')
-print("")
-asciibars.plot(data_1,unit='▓',neg_unit='░',neg_max=100,count_pf='%')
-print("")
-asciibars.plot(data_2,sep_lc=' ',count_pf='%')
-print("")
+def test_plot():
+    asciibars.plot(data_1)
+    print("")
+    asciibars.plot(data_1,sep_lc=' -> ',unit='▓',max_length=40)
+    print("")
+    asciibars.plot(data_1,unit='▓',neg_unit='░')
+    print("")
+    asciibars.plot(data_1,unit='▓',neg_unit='░',neg_max=100,count_pf='%')
+    print("")
+    asciibars.plot(data_2,sep_lc=' ',count_pf='%')
+    print("")
