@@ -41,7 +41,9 @@ def _get_sign(x):
     return sign
 
 
-def _generate_enables_for_negated_bars(neg_unit: str, neg_max: int) -> tuple[bool, bool]:
+def _generate_enables_for_negated_bars(
+    neg_unit: str, neg_max: int
+) -> tuple[bool, bool]:
     """Determine enable flags for negated bar rendering."""
     neg_e = False
     neg_max_e = False
@@ -71,10 +73,10 @@ def _get_max_len_str_count(data: list[tuple[str, int]]) -> int:
 
     for _label, count in data:
         len_str_count = len(str(count))
-        
+
         if len_str_count > max_len_str_count:
             max_len_str_count = len_str_count
-    
+
     return max_len_str_count
 
 
@@ -89,14 +91,17 @@ def _get_signs_vector(data: list[tuple[str, int]]) -> list[int]:
     return vect_sign
 
 
-def _check_data_non_negative(vect_sign: list[int], neg_e: bool, neg_max_e: bool) -> None:
+def _check_data_non_negative(
+    vect_sign: list[int], neg_e: bool, neg_max_e: bool
+) -> None:
     """Check data counts are non-negative if neg_unit or neg_max are specified."""
 
     if neg_e or neg_max_e:
         for sign in vect_sign:
             if sign == (-1):
-                raise Exception("Data contains negative values, but neg_unit or neg_max is specified.")
-
+                raise Exception(
+                    "Data contains negative values, but neg_unit or neg_max is specified."
+                )
 
 
 def _get_bars_strings(
@@ -104,18 +109,19 @@ def _get_bars_strings(
     unit: str,
     neg_unit: str,
     max_length: int,
-    range_of_values: float
-    ) -> tuple[list[str], list[str], int, int]:
-
+    range_of_values: float,
+) -> tuple[list[str], list[str], int, int]:
     vect_str_bar = []
     vect_str_neg = []
     max_pos_length = 0
     max_neg_length = 0
 
     for label, count in data:
-        sign = _get_sign(count) # get sign of count
-        length = round(abs(count) / range_of_values * max_length) # get bar length (absolute value)
-        neg_length = max_length - length # get negated bar length (absolute value)
+        sign = _get_sign(count)  # get sign of count
+        length = round(
+            abs(count) / range_of_values * max_length
+        )  # get bar length (absolute value)
+        neg_length = max_length - length  # get negated bar length (absolute value)
 
         # longest positive/negative bar
         if sign == (+1):
@@ -130,10 +136,8 @@ def _get_bars_strings(
         neg = neg_unit * neg_length
         vect_str_bar.append(bar)
         vect_str_neg.append(neg)
-    
+
     return vect_str_bar, vect_str_neg, max_pos_length, max_neg_length
-
-
 
 
 def _generate_bars(
@@ -151,7 +155,7 @@ def _generate_bars(
     neg_unit: str,
     zero: str,
 ) -> list[str]:
-    """ Generate bars strings for plotting."""
+    """Generate bars strings for plotting."""
 
     i = 0
     bars_list = []
@@ -185,12 +189,10 @@ def _generate_bars(
 
         if print_bar:
             print(bar_to_print)
-            
+
         i += 1
 
     return bars_list
-
-
 
 
 def _get_max_value_line(
@@ -203,7 +205,7 @@ def _get_max_value_line(
     neg_max: int,
     max_length: int,
     max_len_str_count: int,
-    ):
+):
     """Generate and print the maximum value line if applicable."""
 
     str_max_val_with_spaces = ""
@@ -216,21 +218,20 @@ def _get_max_value_line(
 
         if print_bar:
             print(str_max_val_with_spaces)
-    
-    return str_max_val_with_spaces
 
+    return str_max_val_with_spaces
 
 
 def plot(
     data: list[tuple[str, int]],  # input data (label, count)
-    sep_lc: str =" | ",  # label-count separator
-    unit: str="█",  # string unit for bar
-    zero: str="▏",  # string for bar when equal to zero
-    max_length: int=20,  # maximum bar length in plot
-    neg_unit: str="",  # negated bar unit (e.g., '░')
-    neg_max: int=0,  # maximum value when negated bar is used
-    count_pf: str="",  # count postfix (e.g., '%')
-    print_bar: bool=False,
+    sep_lc: str = " | ",  # label-count separator
+    unit: str = "█",  # string unit for bar
+    zero: str = "▏",  # string for bar when equal to zero
+    max_length: int = 20,  # maximum bar length in plot
+    neg_unit: str = "",  # negated bar unit (e.g., '░')
+    neg_max: int = 0,  # maximum value when negated bar is used
+    count_pf: str = "",  # count postfix (e.g., '%')
+    print_bar: bool = False,
 ) -> dict:
     """Plot ascii bars."""
 
@@ -241,17 +242,13 @@ def plot(
     range_of_values = neg_max if (neg_e and neg_max_e) else (max_value - min_value)
     max_label_length = max(len(label) for label, _count in data)
     vect_sign = _get_signs_vector(data)
-    
+
     # checks
     _check_data_non_negative(vect_sign, neg_e, neg_max_e)
 
     # bars
     vect_str_bar, vect_str_neg, max_pos_length, max_neg_length = _get_bars_strings(
-        data,
-        unit,
-        neg_unit,
-        max_length,
-        range_of_values
+        data, unit, neg_unit, max_length, range_of_values
     )
 
     bars_list = _generate_bars(
@@ -281,7 +278,6 @@ def plot(
         max_length,
         max_len_str_count,
     )
-
 
     # return
     return {
