@@ -57,8 +57,8 @@ def _generate_enables_for_negated_bars(
     return neg_e, neg_max_e
 
 
-def _get_min_max_values(data: list[tuple[str, int]]) -> tuple[int, int]:
-    """Get min and max values from data."""
+def _get_min_max_count_values(data: list[tuple[str, int]]) -> tuple[int, int]:
+    """Get min and max count values from data."""
 
     max_value = max(count for _label, count in data)
     min_value = min(count for _label, count in data)
@@ -236,8 +236,8 @@ def plot(
     """Plot ascii bars."""
 
     # get useful values
-    neg_e, neg_max_e = _generate_enables_for_negated_bars(neg_unit, neg_max)
-    max_value, min_value = _get_min_max_values(data)
+    neg_e, neg_max_e = _generate_enables_for_negated_bars(neg_unit, neg_max) # TODO: not really needed, too simple content
+    max_value, min_value = _get_min_max_count_values(data)
     max_len_str_count = _get_max_len_str_count(data)
     range_of_values = neg_max if (neg_e and neg_max_e) else (max_value - min_value)
     max_label_length = max(len(label) for label, _count in data)
