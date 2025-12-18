@@ -117,11 +117,15 @@ def _get_bars_strings(
     max_neg_length = 0
 
     for label, count in data:
-        sign = _get_sign(count)  # get sign of count
+        sign = _get_sign(count)
+
+        # bar length (absolute value)
         length = round(
             abs(count) / range_of_values * max_length
-        )  # get bar length (absolute value)
-        neg_length = max_length - length  # get negated bar length (absolute value)
+        )
+
+        # negated bar length (absolute value)
+        neg_length = max_length - length
 
         # longest positive/negative bar
         if sign == (+1):
@@ -280,7 +284,10 @@ def plot(
     )
 
     # return
-    return {
+    plot_dict = {
+        "vect_str_bar": vect_str_bar,
+        "vect_str_neg": vect_str_neg,
         "bars_list": bars_list,
         "str_max_val_with_spaces": str_max_val_with_spaces,
     }
+    return plot_dict
