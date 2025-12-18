@@ -120,9 +120,7 @@ def _get_bars_strings(
         sign = _get_sign(count)
 
         # bar length (absolute value)
-        length = round(
-            abs(count) / range_of_values * max_length
-        )
+        length = round(abs(count) / range_of_values * max_length)
 
         # negated bar length (absolute value)
         neg_length = max_length - length
@@ -240,7 +238,9 @@ def plot(
     """Plot ascii bars."""
 
     # get useful values
-    neg_e, neg_max_e = _generate_enables_for_negated_bars(neg_unit, neg_max) # TODO: not really needed, too simple content
+    neg_e, neg_max_e = _generate_enables_for_negated_bars(
+        neg_unit, neg_max
+    )  # TODO: not really needed, too simple content
     max_value, min_value = _get_min_max_count_values(data)
     max_len_str_count = _get_max_len_str_count(data)
     range_of_values = neg_max if (neg_e and neg_max_e) else (max_value - min_value)

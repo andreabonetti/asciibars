@@ -1,5 +1,6 @@
 import asciibars
 
+
 def main():
     data = [
         ("Gigi", 64),
@@ -11,7 +12,7 @@ def main():
     ]
 
     print("")
-    plot_dict = asciibars.plot(data, print_bar=True, unit ="▓", neg_unit="░")
+    plot_dict = asciibars.plot(data, print_bar=True, unit="▓", neg_unit="░")
     print("")
 
     print("List of bars:")
@@ -22,7 +23,8 @@ def main():
     print(plot_dict["vect_str_neg"])
     print("")
 
-    return plot_dict # for testing
+    return plot_dict  # for testing
+
 
 if __name__ == "__main__":
     _ = main()
